@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- SEO -->
+	<title>WebSlides: Making HTML presentations easy</title>
+	<meta name="description"
+		content="WebSlides is the easiest way to make HTML presentations, portfolios, and landings. Just essential features.">
+
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext"
+		rel="stylesheet">
+
+	<!-- CSS WebSlides -->
+	<link rel="stylesheet" type='text/css' media='all' href="static/css/webslides.css">
+
+	<!-- Optional - CSS SVG Icons (Font Awesome) -->
+	<link rel="stylesheet" type='text/css' media='all' href="static/css/svg-icons.css">
+
+	<!-- FAVICONS -->
+	<link rel="shortcut icon" sizes="16x16" href="static/images/favicons/favicon.png">
+	<link rel="shortcut icon" sizes="32x32" href="static/images/favicons/favicon-32.png">
+	<link rel="apple-touch-icon icon" sizes="76x76" href="static/images/favicons/favicon-76.png">
+	<link rel="apple-touch-icon icon" sizes="120x120" href="static/images/favicons/favicon-120.png">
+	<link rel="apple-touch-icon icon" sizes="152x152" href="static/images/favicons/favicon-152.png">
+	<link rel="apple-touch-icon icon" sizes="180x180" href="static/images/favicons/favicon-180.png">
+	<link rel="apple-touch-icon icon" sizes="192x192" href="static/images/favicons/favicon-192.png">
+
+	<!-- Android -->
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="theme-color" content="#333333">
+</head>
+
+<body>
+	<main role="main">
+		<article id="webslides" class="vertical">
+			<section class="bg-primary">
+				<div class="wrap aligncenter">
+					<h1><strong>Going offline</strong></h1>
+					<br>
+					<p class="text-intro">Synchronization Architecture for SalesRep</p>
+					<hr>
+					<p>Aphix Software</p>
+				</div>
+			</section>
+
+			
+
+			<section class="bg-secondarys">
+				<div class="wrap aligncenter">
+					<h1>Vision</h1>
+
+					<br>
+
+					<p>
+						Developing an offline-first solution for sale representatives
+						<br>
+						which enables ERP management on the move
+					</p>
+				</div>
+			</section>
+
+			<section class="my-images">
+				<div class="wrap">
+					<h2>Technologies</h2>
+
+					<br>
+
+					<ul class="flexblock features">
+						<li>
+							<div>
+								<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Sqlite-square-icon.svg/1024px-Sqlite-square-icon.svg.png" alt="">
+								<h2>SQLite</h2>
+								<p>Native</p>
+								<p><small>Database</small></p>
+							</div>
+						</li>
+						<li>
+							<div>
+								<img src="https://cdn.freebiesupply.com/logos/thumbs/2x/pouchdb-logo.png" alt="">
+								<h2>Pouch DB</h2>
+								<p>Sync Interface</p>
+								<p><small>Database</small></p>
+							</div>
+						</li>
+						<li>
+							<div>
+								<img src="https://cdn.freebiesupply.com/logos/large/2x/couchdb-1-logo-png-transparent.png" alt="">
+								<h2>Couch DB</h2>
+								<p>Aphix Cloud</p>
+								<p><small>Database</small></p>
+							</div>
+						</li>
+
+						<li>
+							<div>
+								<img src="https://cdn.worldvectorlogo.com/logos/react.svg" alt="">
+								<h2>React</h2>
+								<p>Design System</p>
+								<p><small>Library</small></p>
+							</div>
+						</li>
+						<li>
+							<div>
+								<img src="https://miro.medium.com/max/2800/0*U2DmhXYumRyXH6X1.png" alt="">
+								<h2>Redux</h2>
+								<p>State Management</p>
+								<p><small>Library</small></p>
+							</div>
+						</li>
+						<li>
+							<div>
+								<img src="https://cordova.apache.org/static/img/cordova_256.png" alt="">
+								<h2>Cordova</h2>
+								<p>Native Wrapper</p>
+								<p><small>WebView</small></p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="bg-primary">
+				<div class="wrap aligncenter">
+					<h2>Server Side</h2>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap">
+					<img class="alignleft my-boom-img size-50" src="https://www.freepngimg.com/download/cloud_computing/62412-blue-computing-icons-virtual-servers-computer-private.png" alt="iPhone">
+
+					<h2>Aphix Cloud</h2>
+
+
+					<p class="text-intro">
+						ERP record persistence
+					</p>
+
+					<br>
+
+					<p>
+						Core system would communicate with multiple ERPs and store
+						that information inside CouchDB.
+					</p>
+
+					<p>
+						Direct communication is forbidden. At this point we are not considering
+						socket type communication with the core and apps. Therefore our synchronisation
+						and cache invalidation will be preformed by an interface layer utilized by
+						our clients (PouchDB).
+					</p>
+
+					<p>
+						There could be potential to breakdown into smaller microservices
+						and sync them up with bayeux protocol to retain their singularity.
+						Providing an event system over polling.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap">
+					<img class="alignright my-boom-img size-50" src="https://www.k15t.com/files/158505612/158512235/1/1544536914568/Backbone_Hero_Teaser%402x.png" alt="iPhone">
+
+					<h2>Couch & Pouch</h2>
+
+
+					<p class="text-intro">
+						Single source of truth
+					</p>
+
+					<br>
+
+					<p>
+						This storage is external to all SalesRep instances and is being populated
+						by the core system. We gain access to that information by invoking PouchDB's
+						API to access the external data.
+					</p>
+
+					<p>
+						PouchDB is an in memory database utilizing browser storages. Our clients
+						will utilize SQLite instead of IndexedDB/LocalStorage for persistence.
+						Allowing for better performance as there is a smaller footprint within browsers.
+					</p>
+
+					<p>
+						Thanks to PouchDB's synchronisation we can treat PouchDB as an interface to actual source,
+						and it would offload memory into device's memory.
+					</p>
+				</div>
+			</section>
+
+			<section class="bg-primary">
+				<div class="wrap aligncenter">
+					<h2>UI/UX</h2>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap">
+					<div class="grid vertical-align">
+						<div class="column">
+							<h2>Components</h2>
+							
+							<br>
+
+							<p>
+								Reusability is less of a concern while system is growing, and abstracting
+								certain elements is not always obvious. It is desireable to compose
+								pure components which interact based on inputs and outputs.
+							</p>
+
+							<p>
+								Components which utilize state for presentational purposes or encapsulated
+								functionality are just right.
+							</p>
+						</div>
+
+						<div class="column">
+						  <pre>
+export default () => {
+  const [counter, setCounter] = React.useState(0);
+
+  const handleClick = React.useCallback(
+    () => setCounter(oldCounter => oldCounter + 1),
+    [counter],
+  );
+
+  return (
+    &lt;button type="button" onClick={handleClick}&gt;
+      {counter}
+    &lt;/button&gt;
+  );
+};
+							</pre>
+						</div>
+					  </div>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap">
+					<div class="grid vertical-align">
+						<div class="column">
+							<h2>Views</h2>
+							
+							<br>
+
+							<p>
+								Routing is an essential in SPAs for their conditional rendering.
+								If we bind Redux's state on certain routed components and user is on
+								that route. Then we get correct view according to provided query parameters.
+							</p>
+
+							<p>
+								Landed route may propagate further state changes to render the view accordingly.
+								Then we trigger middleware to validate current state and preform further
+								actions.
+							</p>
+						</div>
+
+						<div class="column">
+						  <pre>
+const A = React.lazy(() => import('./A/A.component'));
+const B = React.lazy(() => import('./B/B.component'));
+const C = React.lazy(() => import('./C/C.component'));
+
+export default () => (
+  &lt;Layout&gt;
+    &lt;Switch&gt;
+      &lt;Route path="/one" component={A} /&gt;
+      &lt;Route path="/two" component={B} /&gt;
+      &lt;Route path="/three" component={C} /&gt;
+    &lt;/Switch&gt;
+  &lt;/Layout&gt;
+);
+							</pre>
+						</div>
+					  </div>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap">
+					<div class="grid vertical-align">
+						<div class="column">
+							<h2>Containers</h2>
+							
+							<br>
+
+							<p>
+								Routing is an essential in SPAs for their conditional rendering.
+								If we bind Redux's state on certain routed components and user is on
+								that route. Then we get correct view according to provided query parameters.
+							</p>
+
+							<p>
+								Landed route may propagate further state changes to render the view accordingly.
+								Then we trigger middleware to validate current state and preform further
+								actions.
+							</p>
+						</div>
+
+						<div class="column">
+						  <pre>
+export default React.memo(({ match: { params: { id } } }) => {
+  const dispatch = ReactRedux.useDispatch();
+
+  const order = ReactRedux.useSelector(
+    Orders.getOrder(id),
+    ReactRedux.shallowEqual,
+  );
+
+  const dispatchProps = {
+    handleConfirmOrder: () => (
+      dispatch(Order.confirm(order))
+    ),
+    removeOrder: () => (
+      dispatch(Order.remove(id))
+    ),
+  };
+
+  return &lt;Orders {...dispatchProps} /&gt;;
+});
+							</pre>
+						</div>
+					  </div>
+				</div>
+			</section>
+		</article>
+	</main>
+
+	<script src="static/js/webslides.js"></script>
+	<script>
+		window.ws = new WebSlides();
+	</script>
+
+	<script defer src="static/js/svg-icons.js"></script>
+</body>
+
+</html>
