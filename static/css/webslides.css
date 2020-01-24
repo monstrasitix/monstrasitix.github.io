@@ -3140,10 +3140,10 @@ Slides - Backgrounds <section class="bg-primary">
 ================================================== */
 /*3 Corp Colors*/
 .bg-primary {
-  background-color: #44d; }
+  background-color: #1a3c6c; }
 
 .bg-secondary {
-  background-color: #67d; }
+  background-color: #285390; }
 
 .bg-light {
   background-color: #f7f9fb; }
@@ -3801,4 +3801,12 @@ Slides Index
 .my-boom-img {
   max-height: 500px;
   object-fit: contain;
+}
+
+.logo-circle {
+  border-radius: 100%;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  box-shadow: 0 8px 16px rgba(0, 20, 80, 0.02), 0 4px 16px rgba(0, 0, 0, 0.08);
 }

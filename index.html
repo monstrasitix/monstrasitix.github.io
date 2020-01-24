@@ -48,7 +48,7 @@
 				</div>
 			</section>
 
-			
+
 
 			<section class="bg-secondarys">
 				<div class="wrap aligncenter">
@@ -56,7 +56,7 @@
 
 					<br>
 
-					<p>
+					<p class="text-intro">
 						Developing an offline-first solution for sale representatives
 						<br>
 						which enables ERP management on the move
@@ -73,7 +73,8 @@
 					<ul class="flexblock features">
 						<li>
 							<div>
-								<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Sqlite-square-icon.svg/1024px-Sqlite-square-icon.svg.png" alt="">
+								<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Sqlite-square-icon.svg/1024px-Sqlite-square-icon.svg.png"
+									alt="">
 								<h2>SQLite</h2>
 								<p>Native</p>
 								<p><small>Database</small></p>
@@ -89,7 +90,8 @@
 						</li>
 						<li>
 							<div>
-								<img src="https://cdn.freebiesupply.com/logos/large/2x/couchdb-1-logo-png-transparent.png" alt="">
+								<img src="https://cdn.freebiesupply.com/logos/large/2x/couchdb-1-logo-png-transparent.png"
+									alt="">
 								<h2>Couch DB</h2>
 								<p>Aphix Cloud</p>
 								<p><small>Database</small></p>
@@ -131,207 +133,389 @@
 			</section>
 
 			<section>
-				<div class="wrap">
-					<img class="alignleft my-boom-img size-50" src="https://www.freepngimg.com/download/cloud_computing/62412-blue-computing-icons-virtual-servers-computer-private.png" alt="iPhone">
-
+				<div class="wrap aligncenter">
 					<h2>Aphix Cloud</h2>
-
-
-					<p class="text-intro">
-						ERP record persistence
-					</p>
-
 					<br>
+					<div class="grid vertical-align">
+						<div class="column">
+							<p>
+								Interrogates external ERP systems and forwards records into our database.
+								Storage imposes internal schema and record integrity for our needs.
+							</p>
 
-					<p>
-						Core system would communicate with multiple ERPs and store
-						that information inside CouchDB.
-					</p>
-
-					<p>
-						Direct communication is forbidden. At this point we are not considering
-						socket type communication with the core and apps. Therefore our synchronisation
-						and cache invalidation will be preformed by an interface layer utilized by
-						our clients (PouchDB).
-					</p>
-
-					<p>
-						There could be potential to breakdown into smaller microservices
-						and sync them up with bayeux protocol to retain their singularity.
-						Providing an event system over polling.
-					</p>
-				</div>
+							<p>
+								Direct record access via RESTful API would be forbidden in favor of
+								database access. Such approach would ease synchronisation and live data
+								feed for SalesRep.
+							</p>
+						</div>
+						<div class="column">
+							<figure>
+								<img class="aligncenter logo-circle"
+									src="https://pbs.twimg.com/profile_images/651476318362714113/j-E9kVBf_400x400.png"
+									alt="iPhone">
+							</figure>
+						</div>
+						<div class="column">
+							<ul class="flexblock specs">
+								<li>
+									<div>
+										<h2>ERP Record Persistence</h2>
+										<p>Core communicates with external ERPs and inserts records into CouchDB</p>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h2>Infrastructure</h2>
+										<p>Handles record integrity and issue monitoring</p>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h2>WebShop</h2>
+										<p>E-commerce support</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
 			</section>
 
 			<section>
-				<div class="wrap">
-					<img class="alignright my-boom-img size-50" src="https://www.k15t.com/files/158505612/158512235/1/1544536914568/Backbone_Hero_Teaser%402x.png" alt="iPhone">
-
+				<div class="wrap aligncenter">
 					<h2>Couch & Pouch</h2>
-
-
-					<p class="text-intro">
-						Single source of truth
-					</p>
-
 					<br>
+					<div class="grid vertical-align">
+						<div class="column">
+							<p>
+								CouchDB would retain original data from external ERPs while PouchDB
+								would be our interface layer for accessing those records. 
+							</p>
 
-					<p>
-						This storage is external to all SalesRep instances and is being populated
-						by the core system. We gain access to that information by invoking PouchDB's
-						API to access the external data.
-					</p>
+							<p>
+								SalesRep clients will be aware of PouchDB's context through it's direct API.
+								And PouchDB would take care of CouchDB syncchronisation and memory offloading
+								to SQLite.
+							</p>
 
-					<p>
-						PouchDB is an in memory database utilizing browser storages. Our clients
-						will utilize SQLite instead of IndexedDB/LocalStorage for persistence.
-						Allowing for better performance as there is a smaller footprint within browsers.
-					</p>
+							<p>
+								Benefit - we gain free sync between Aphix Cloud and SalesRep.
+								SQLite would be installed together with SalesRep on mobile devices.
+							</p>
+						</div>
 
-					<p>
-						Thanks to PouchDB's synchronisation we can treat PouchDB as an interface to actual source,
-						and it would offload memory into device's memory.
-					</p>
-				</div>
+						<div class="column">
+							<figure>
+								<img class="aligncenter logo-circle"
+									src="https://www.joshmorony.com/media/2016/06/pouchdb-couchdb.png" alt="iPhone">
+							</figure>
+						</div>
+
+						<div class="column">
+							<ul class="flexblock specs">
+								<li>
+									<div>
+										<h2>Synchronisation</h2>
+										<p>Automatic syncrhonisation via HTTP protocol</p>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h2>Browser Databases</h2>
+										<p>
+											Offline stability with browser storage fallback
+										</p>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h2>Native</h2>
+										<p>Browser fallback is replaced by SQLite</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
 			</section>
 
 			<section class="bg-primary">
 				<div class="wrap aligncenter">
-					<h2>UI/UX</h2>
+					<h2>Client Side</h2>
 				</div>
 			</section>
 
 			<section>
-				<div class="wrap">
+				<div class="wrap aligncenter size-50">
+					<h2>Initialisation</h2>
+					<br>
+					<p>
+						Essentially SalesRep needs boot up and preform initial state
+						without without race conditions. Also retaining control
+						over full application's state without design system's awareness.
+					</p>
+					<ul class="flexblock specs">
+						<li>
+							<h2>Component rendering</h2>
+							<p>Routing</p>
+						</li>
+						<li>
+							<h2>Database transactions</h2>
+							<p>Side effects</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+
+			<section>
+				<div class="wrap aligncenter">
 					<div class="grid vertical-align">
 						<div class="column">
-							<h2>Components</h2>
-							
-							<br>
-
 							<p>
-								Reusability is less of a concern while system is growing, and abstracting
-								certain elements is not always obvious. It is desireable to compose
-								pure components which interact based on inputs and outputs.
+								It is important to allow Redux to sunc with component life cycle.
+								We are able to dispatch actions, traverse state in middleware via selectors
+								and conditionally redirect users through views.
 							</p>
 
 							<p>
-								Components which utilize state for presentational purposes or encapsulated
-								functionality are just right.
+								External state modifications are external from components and it is
+								crucial to keep them seperate.
 							</p>
 						</div>
 
 						<div class="column">
-						  <pre>
-export default () => {
-  const [counter, setCounter] = React.useState(0);
+							<pre>
+export const Root = ({ history, store }) => (
+  &lt;Router history={history}&gt;
+    &lt;Provider store={store}&gt;
+      &lt;AppContainer /&gt;
+    &lt;/Provider&gt;
+  &lt;/Router&gt;
+);
 
-  const handleClick = React.useCallback(
-    () => setCounter(oldCounter => oldCounter + 1),
-    [counter],
-  );
+...
 
-  return (
-    &lt;button type="button" onClick={handleClick}&gt;
-      {counter}
-    &lt;/button&gt;
-  );
-};
+ReactDOM.render(
+  &lt;Root store={store} history={history} /&gt;,
+  document.getElementById('root'),
+);
 							</pre>
 						</div>
-					  </div>
+					</div>
 				</div>
 			</section>
 
+
 			<section>
-				<div class="wrap">
+				<div class="wrap aligncenter">
 					<div class="grid vertical-align">
 						<div class="column">
-							<h2>Views</h2>
-							
-							<br>
-
 							<p>
-								Routing is an essential in SPAs for their conditional rendering.
-								If we bind Redux's state on certain routed components and user is on
-								that route. Then we get correct view according to provided query parameters.
-							</p>
-
-							<p>
-								Landed route may propagate further state changes to render the view accordingly.
-								Then we trigger middleware to validate current state and preform further
-								actions.
+								Here we are initialising state via composed reducers. Applied middleware
+								allows us to customize side effect handling while keeping application's
+								state encapulsated and not poluted with store imports.
 							</p>
 						</div>
 
 						<div class="column">
-						  <pre>
-const A = React.lazy(() => import('./A/A.component'));
-const B = React.lazy(() => import('./B/B.component'));
-const C = React.lazy(() => import('./C/C.component'));
+							<pre>
+const reducer = (state = 0) => state;
 
-export default () => (
-  &lt;Layout&gt;
-    &lt;Switch&gt;
-      &lt;Route path="/one" component={A} /&gt;
-      &lt;Route path="/two" component={B} /&gt;
-      &lt;Route path="/three" component={C} /&gt;
-    &lt;/Switch&gt;
+const middleware = {
+  saga: createSagaMiddleware({ }),
+  pouch: createPouchMiddleware({ }),
+  logger: createLoggerMiddleware({ }),
+};
+
+const store = Redux.createStore(
+  reducer,
+  Redux.applyMiddleware(
+    ...Object.values(middleware),
+  ),
+);
+
+middleware.saga.run(sagas);
+							</pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+			<section>
+				<div class="wrap aligncenter">
+					<div class="grid vertical-align">
+						<div class="column">
+							<p>
+								With whole application's state we can orchestrate series of parallel
+								actions to sync and validate resource connection.
+							</p>
+
+							<p>
+								In this example we are currying our generator by specifying which
+								resource we're inclined to take for the request and a handler. Alternatively
+								requesting resource address on failure via service-worker and setting state
+								parameters if such resource is available.
+							</p>
+
+							<p>
+								I think there are advantages of persisting resource addresses in state
+								as we can conditionally preform actions and render components. Another advantage
+								is where we might preform a form submittion  via POST to a resource for
+								credential validation Service is offline and therefore we might cache it
+								for later validation when the resource comes online.
+							</p>
+
+							<p>
+								In micro-services architectures, we cannot know if those services were
+								started to begin with.
+							</p>
+						</div>
+
+						<div class="column">
+							<pre>
+export const handleRequest = (resource, saga) => function* (action) {
+  try {
+    const { host, status } = yield ReduxSaga.effects.select(
+      Resource.get(resource)
+    );
+
+    if (status == false) {
+      yield ReduxSaga.effects.fork(requestResource, resource);
+    } else {
+      yield ReduxSaga.effects.fork(saga, host);
+    }
+  } catch (error) {
+    yield ReduxSaga.effects.put(
+      Resource.setStatus(resource, false)
+    );
+  }
+}
+
+export default [
+  ReduxSaga.effects.takeEvery(
+    'PRODUCTS_FETCH',
+    handleRequest('coreService', fetchProducts),
+  ),
+  ...
+];
+							</pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap aligncenter size-50">
+					<h2>Routing</h2>
+					<br>
+					<p>
+						Considering how deeply nested our component hierarchy can become. Owning
+						a single component responsible for multiple states would need to be researched
+						as I wouldn't remember how to maintain such components. But...
+					</p>
+					<p>
+						I would suggest creating view components which define basic internal state
+						for layout, theme's and media queries. And route endpoints for container components.
+					</p>
+					<p>
+						We can also configure our history context to be one of browser/hash/memory for
+						out development environment to inspect state during redirect.
+					</p>
+					<ul class="flexblock specs">
+						<li>
+							<h2>Prioritizing which views render initially</h2>
+							<p>Lazy loading</p>
+						</li>
+						<li>
+							<h2>Pattern matched routes</h2>
+							<p>Routes</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap aligncenter">
+					<div class="grid vertical-align">
+						<div class="column">
+							<p>
+								Another suggestion would be to utilize route conditional rendering over
+								state. We could still preform side effects but on failure we would
+								preform a redirect to load requied state via parameters from PouchDB.
+							</p>
+
+							<p>
+								Note when the user has been selected, it is possible to view user
+								details and toggle appropriate sidebar menu for that user. Transitional
+								route animations could also be applied via utility component which
+								wraps around <em>ReactRouterDOM.Switch</em>.
+							</p>
+						</div>
+
+						<div class="column">
+							<pre>
+export default = () => (
+  &lt;Layout flex&gt;
+    &lt;Sidebar&gt;
+      &lt;Switch&gt;
+        &lt;Route path="/user/:id" component={UserMenu} /&gt;
+        &lt;Route path="/" component={Menu} /&gt;
+      &lt;/Switch&gt;
+    &lt;/Sidebar&gt;
+    &lt;Layout&gt;
+      &lt;Navbar /&gt;
+      &lt;Main&gt;
+        &lt;Switch&gt;
+          &lt;Route path="/user/:id" component={UserDetails} /&gt;
+          &lt;Route path="/" component={Dashboard} /&gt;
+        &lt;/Switch&gt;
+      &lt;/Main&gt;
+    &lt;/Layout&gt;
   &lt;/Layout&gt;
 );
 							</pre>
 						</div>
-					  </div>
+					</div>
 				</div>
 			</section>
+
 
 			<section>
-				<div class="wrap">
+				<div class="wrap aligncenter">
 					<div class="grid vertical-align">
 						<div class="column">
-							<h2>Containers</h2>
-							
-							<br>
-
 							<p>
-								Routing is an essential in SPAs for their conditional rendering.
-								If we bind Redux's state on certain routed components and user is on
-								that route. Then we get correct view according to provided query parameters.
+								Combinding that with lazy loading, we could rely on something neat.
+								Would it be a website we could create notifications with URLs resolving
+								to any portion inside the app. We could even have internal links.
 							</p>
-
-							<p>
-								Landed route may propagate further state changes to render the view accordingly.
-								Then we trigger middleware to validate current state and preform further
-								actions.
 							</p>
 						</div>
 
 						<div class="column">
-						  <pre>
-export default React.memo(({ match: { params: { id } } }) => {
-  const dispatch = ReactRedux.useDispatch();
+							<pre>
+const A = React.lazy(() => import('../views/A/A.component'));
+const B = React.lazy(() => import('../views/B/B.component'));
+const C = React.lazy(() => import('../views/C/C.component'));
+const ErrorBoundry = React.lazy(
+  () => import('../views/ErrorBoundry/ErrorBoundry.component')
+);
 
-  const order = ReactRedux.useSelector(
-    Orders.getOrder(id),
-    ReactRedux.shallowEqual,
-  );
-
-  const dispatchProps = {
-    handleConfirmOrder: () => (
-      dispatch(Order.confirm(order))
-    ),
-    removeOrder: () => (
-      dispatch(Order.remove(id))
-    ),
-  };
-
-  return &lt;Orders {...dispatchProps} /&gt;;
-});
+export default = () => (
+  &lt;Switch&gt;
+    &lt;Route path="/a" component={A} /&gt;
+    &lt;Route path="/b" component={B} /&gt;
+    &lt;Route path="/c" component={C} /&gt;
+    &lt;Route path="/error" component={ErrorBoundry} /&gt;
+  &lt;/Switch&gt;
+);
 							</pre>
 						</div>
-					  </div>
+					</div>
 				</div>
 			</section>
+
 		</article>
 	</main>
 
