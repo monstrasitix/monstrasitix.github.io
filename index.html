@@ -144,9 +144,8 @@
 							</p>
 
 							<p>
-								Direct record access via RESTful API would be forbidden in favor of
-								database access. Such approach would ease synchronisation and live data
-								feed for SalesRep.
+								Cloud would be open for HTTP requests in relation to authentication
+								and other request unrelated to products, categories, contacts etc.
 							</p>
 						</div>
 						<div class="column">
@@ -194,7 +193,7 @@
 
 							<p>
 								SalesRep clients will be aware of PouchDB's context through it's direct API.
-								And PouchDB would take care of CouchDB syncchronisation and memory offloading
+								And PouchDB would take care of CouchDB synchronisation and memory offloading
 								to SQLite.
 							</p>
 
@@ -394,7 +393,7 @@ export const handleRequest = (resource, saga) => function* (action) {
 
 export default [
   ReduxSaga.effects.takeEvery(
-    'PRODUCTS_FETCH',
+    Product.PRODUCTS_FETCH,
     handleRequest('coreService', fetchProducts),
   ),
   ...
@@ -498,6 +497,7 @@ export default = () => (
 const A = React.lazy(() => import('../views/A/A.component'));
 const B = React.lazy(() => import('../views/B/B.component'));
 const C = React.lazy(() => import('../views/C/C.component'));
+
 const ErrorBoundry = React.lazy(
   () => import('../views/ErrorBoundry/ErrorBoundry.component')
 );
@@ -513,6 +513,258 @@ export default = () => (
 							</pre>
 						</div>
 					</div>
+				</div>
+			</section>
+
+			<section class="bg-primary">
+				<div class="wrap aligncenter">
+					<h2>State Management</h2>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap aligncenter size-50">
+					<h2>Containers</h2>
+					<br>
+					<p>
+						There is a common practice to create special components which wrap
+						state from Redux and pass it along to other components. Ideally they
+						sould be placed stand alone or as views bound to routable paths. So that
+						whenever user lands on a specific page, required properties will be provided
+						to the view.
+					</p>
+					<ul class="flexblock specs">
+						<li>
+							<h2>Utilizing selector pattern</h2>
+							<p>State retrieval</p>
+						</li>
+						<li>
+							<h2>Action dispatching revolving around state</h2>
+							<p>Dispatchers</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+
+			<section>
+				<div class="wrap aligncenter">
+					<div class="grid vertical-align">
+						<div class="column">
+							<p>
+								These components are able to retrieve state and provide side effect
+								actions. Selector pattern shines as they can be used similar to LINQ
+								against a centralized store. They can be composed and memoized
+								for those data sources refered to as container components.
+							</p>
+
+							<p>
+								Views depending on specific state elements can be passed down from
+								parents or select their own information.
+							</p>
+						</div>
+
+						<div class="column">
+							<pre>
+export default React.memo(({ match: { params: { categoryId } } }) => {
+  const dispatch = ReactRedux.useDispatch();
+
+  const category = ReactRedux.useSelector(
+	Category.find(categoryId),
+	ReactRedux.shallowEqual,
+  );
+
+  const products = ReactRedux.useSelector(
+	Products.getByCategory(categoryId),
+	ReactRedux.shallowEqual,
+  );
+
+  const handleUpdateCategory = React.useCallback(
+    categoryName => dispatch(
+      Category.updateFilter(categoryName)
+    ),
+    [categoryId],
+  );
+
+  return (
+    &lt;View
+      {...({ products, category })}
+      onUpdateCategory={handleUpdateCategory}
+    /&gt;
+  );
+});
+							</pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap aligncenter size-50">
+					<h2>Forms</h2>
+					<br>
+					<p>
+						We could build reusable forms and save them in store as entities or
+						configurations. Where the app would store them and follow up on different
+						actions. But those entities would be flagged as un-validated while SalesRep
+						is offline and cannot authorize certaon objects.
+					</p>
+
+					<p>
+						Surely we can create objects and validate them on client side, but some schemas
+						require approval and follow certain constraints. Usually those constraints reside
+						on the server. And formal concepts like field validation would have to be compramised.
+					</p>
+					<ul class="flexblock specs">
+						<li>
+							<h2>Form segment for it's context</h2>
+							<p>UI</p>
+						</li>
+						<li>
+							<h2>Consistent form validation</h2>
+							<p>Schema validation</p>
+						</li>
+						<li>
+							<h2>Submitting results to server</h2>
+							<p>Submit handling</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap aligncenter">
+					<div class="grid vertical-align">
+						<div class="column">
+							<p>
+								Simple form would be broken down into fields and formik properties.
+								This would allow for composability and submit would vary by use case.
+								Would be no harm to create a container component to maintain state for
+								that form.
+							</p>
+						</div>
+
+						<div class="column">
+							<pre>
+export const schema = Yup.object().shape({
+  username: Yup.string().require('Username is required'),
+  password: Yup.string().require('Password is required'),
+});
+
+export default = ({ username, password, onSubmit }) => {
+  const form = Formik.useFormik({
+    initialValues: { username, password },
+    validationSchema: schema,
+    handleSubmit: onSubmit,
+  });
+
+  return (
+    &lt;Form&gt;
+      &lt;Field name="username" /&gt;
+      &lt;Field type="password" name="password" /&gt;
+    &lt;/Form&gt;
+  );
+};
+							</pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+			<section>
+				<div class="wrap aligncenter">
+					<div class="grid vertical-align">
+						<div class="column">
+							<p>
+								Login container would be responsive to read the user from state and
+								utilize current set values. Then on submit it would traverse the
+								middleware to preform a HTTP request to validate the user. On success
+								the user would persist in the database with nre changes. Otherwise
+								we could queue it inside PouchDB and preform the validation at a later date.
+							</p>
+
+							<p>
+								Complication arises is that the user might be limited with what he/she can
+								do as we're uncertain if the provided data is valid.
+							</p>
+						</div>
+
+						<div class="column">
+							<pre>
+export default () => {
+  const dispatch = ReactRedux.useDispatch();
+
+  const user = ReactRedux.useSelector(
+    User.get,
+    ReactRedux.shallowEqual,
+  );
+
+  const handleSubmit = React.useCallback(
+    ({ username, password }) => Account.login(username, password),
+    [user],
+  );
+
+  return (
+    &lt;Login {...user} onSubmit={handleSubmit} /&gt;
+  );
+};
+							</pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="wrap aligncenter">
+					<div class="grid vertical-align">
+						<div class="column">
+							<p>
+								Login container would be responsive to read the user from state and
+								utilize current set values. Then on submit it would traverse the
+								middleware to preform a HTTP request to validate the user. On success
+								the user would persist in the database with nre changes. Otherwise
+								we could queue it inside PouchDB and preform the validation at a later date.
+							</p>
+
+							<p>
+								Complication arises is that the user might be limited with what he/she can
+								do as we're uncertain if the provided data is valid.
+							</p>
+						</div>
+
+						<div class="column">
+							<pre>
+export const login = (username, password) => ({
+  type: USER_LOGIN,
+  payload: { username, password },
+});
+
+...
+
+export function* login({ payload: { username, password } }, host) {
+  try {
+    const request = yield ReduxSaga.effects.call(`${host}/user`, {
+      method: 'POST',
+      headers: { ...magic_tokens }
+      body: JSON.stringify({ username, password }),
+    });
+
+    const response = yield ReduxSaga.effects.call(request.json);
+    ...
+  } catch (error) {
+    ...
+  }
+};
+							</pre>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="bg-primary">
+				<div class="wrap aligncenter">
+					<h2>Thanking you</h2>
 				</div>
 			</section>
 
